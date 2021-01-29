@@ -32,6 +32,24 @@ export default class Application extends EventEmitter {
   async init() {
     // Initiate classes and wait for async operations here.
 
+    const URL = 'https://swapi.dev/api/planets/';
+
+    let responce = await fetch(URL);
+    let data = await responce.json();
+
+      let nextPage = data.next;
+      this.data.count = data.count;
+      this.data.planets = data.results;
+
+     while(nextPage){
+       responce = await fetch(nextPage);
+       data = await responce.json();
+       nextPage = data.next;
+       this.data.planets = [...this.data.planets, ...data.results];
+     }
+
+     console.log(this.data.planets);
+
     this.emit(Application.events.APP_READY);
   }
 }
