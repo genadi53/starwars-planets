@@ -32,12 +32,14 @@ export default class Application extends EventEmitter {
   async init() {
     // Initiate classes and wait for async operations here.
 
-    const URL = 'https://swapi.dev/api/planets/';
+    //const URL = 'https://swapi.dev/api/planets/';
+    const URL = 'https://swapi.booost.bg/api/planets/';
 
     let responce = await fetch(URL);
     let data = await responce.json();
 
       let nextPage = data.next;
+
       this.data.count = data.count;
       this.data.planets = data.results;
 
