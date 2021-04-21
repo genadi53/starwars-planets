@@ -50,9 +50,9 @@ export default class Application extends EventEmitter {
        this.data.planets = [...this.data.planets, ...data.results];
      }
 
-     console.log(this.data.planets);
+     //console.log(this.data.planets);
 
-    this.emit(Application.events.APP_READY);
+    this.emit('app_ready');
   }
 }
 
